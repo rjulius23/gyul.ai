@@ -359,6 +359,24 @@ a {
     line-height: 1.7;
 }
 
+.service-card.highlight {
+    border-color: var(--gold);
+    background: linear-gradient(135deg, rgba(201, 162, 39, 0.05) 0%, var(--white) 100%);
+}
+
+.current-badge {
+    background: var(--gold);
+    color: var(--navy-dark);
+    font-size: 0.7rem;
+    padding: 4px 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+    vertical-align: middle;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
 /* Projects Section */
 .projects {
     padding: 120px 0;
