@@ -1,11 +1,13 @@
 ---
 import Arrow from './Arrow.astro';
+import { perspectives } from '../lib/perspectives';
 import {
   createSignalGeometry,
   projectSignal,
   ringStyle,
   ringPath,
 } from '../lib/signal';
+// Explicit tabindex=0 preserves pointer focus and native popover focus return in Safari.
 const rings = projectSignal(createSignalGeometry());
 ---
 
@@ -34,12 +36,13 @@ const rings = projectSignal(createSignalGeometry());
         >↗</span
       >
     </div>
-    <div class="signal-stage" aria-hidden="true">
-      <div class="signal-guide"></div>
-      <div class="signal-guide signal-guide--inner"></div>
+    <div class="signal-stage">
+      <div class="signal-guide" aria-hidden="true"></div>
+      <div class="signal-guide signal-guide--inner" aria-hidden="true"></div>
       <svg
         class="signal-static"
         data-signal-static
+        aria-hidden="true"
         viewBox="0 0 600 530"
         width="600"
         height="530"
@@ -65,23 +68,74 @@ const rings = projectSignal(createSignalGeometry());
       </svg>
       <canvas
         data-signal-canvas
+        aria-hidden="true"
         class="signal-canvas"
         width="600"
         height="530"
         hidden></canvas>
-      <div class="signal-tag tag-context">
-        <span class="tag-cross">+</span><span>01 / CONTEXT</span>
-      </div>
-      <div class="signal-tag tag-tools">
-        <span class="tag-cross">+</span><span>02 / CAPABILITY</span>
-      </div>
-      <div class="signal-tag tag-human">
-        <span class="tag-cross">+</span><span>03 / HUMAN JUDGEMENT</span>
-      </div>
-      <span class="signal-coordinate eyebrow">IDEAS → SYSTEMS</span>
+      {
+        perspectives.map((perspective) => (
+          <button
+            type="button"
+            tabindex="0"
+            class={`signal-tag ${perspective.position}`}
+            popovertarget={`insight-${perspective.id}`}
+            style={`--insight-anchor: --insight-${perspective.id}`}
+            data-insight-trigger={perspective.id}
+          >
+            <span class="tag-cross" aria-hidden="true">
+              +
+            </span>
+            <span>
+              {perspective.number} / {perspective.label}
+            </span>
+            <span class="sr-only"> — my approach</span>
+          </button>
+        ))
+      }
+      <span class="signal-coordinate eyebrow" aria-hidden="true"
+        >IDEAS → SYSTEMS</span
+      >
     </div>
+    {
+      perspectives.map((perspective) => (
+        <div
+          id={`insight-${perspective.id}`}
+          popover="auto"
+          role="dialog"
+          aria-labelledby={`insight-${perspective.id}-title`}
+          class="signal-insight"
+          style={`--insight-anchor: --insight-${perspective.id}`}
+          data-signal-insight
+        >
+          <div class="insight-heading">
+            <p class="eyebrow">
+              {perspective.number} / {perspective.label}
+            </p>
+            <button
+              type="button"
+              tabindex="0"
+              class="insight-close"
+              popovertarget={`insight-${perspective.id}`}
+              popovertargetaction="hide"
+              aria-label={`Close ${perspective.label.toLowerCase()} insight`}
+              autofocus
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <h3 id={`insight-${perspective.id}-title`}>{perspective.title}</h3>
+          <p class="insight-body">{perspective.body}</p>
+          <p class="insight-signature">— Gyula</p>
+        </div>
+      ))
+    }
     <figcaption id="signal-caption">
-      <span>Different threads. One useful system.</span>
+      <span
+        >Different threads. One useful system.<span class="insight-hint"
+          >Explore the + markers for my take.</span
+        ></span
+      >
       <button type="button" class="motion-control" data-art-pause hidden
         ><span aria-hidden="true" data-motion-icon>Ⅱ</span>
         <span data-motion-label>Pause motion</span></button
@@ -204,14 +258,40 @@ const rings = projectSignal(createSignalGeometry());
     gap: 0.45rem;
     position: absolute;
     z-index: 1;
-    font: 0.55rem var(--mono);
+    font: 0.6rem var(--mono);
     letter-spacing: 0.035em;
-    background: rgb(245 243 236 / 0.94);
-    padding: 0.4rem 0.45rem 0.4rem 0.2rem;
+    background: rgb(245 243 236 / 0.97);
+    color: var(--ink);
+    padding: 0.35rem 0.6rem 0.35rem 0.25rem;
+    min-height: 44px;
+    max-width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    anchor-name: var(--insight-anchor);
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+  .signal-tag:hover {
+    border-color: #aeb5a0;
+    background: var(--paper);
   }
   .tag-cross {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
     font-size: 1.1rem;
-    line-height: 0.5;
+    line-height: 1;
+  }
+  .signal-tag:hover .tag-cross {
+    background: var(--signal);
+    border-color: var(--ink);
   }
   .tag-context {
     top: 17%;
@@ -227,15 +307,108 @@ const rings = projectSignal(createSignalGeometry());
   }
   .tag-tools {
     top: 41%;
-    right: -1%;
+    right: 0;
   }
   .tag-human {
     bottom: 10%;
     left: 18%;
+    max-width: 82%;
   }
   .tag-human .tag-cross {
     background: var(--signal);
-    padding: 0.3rem;
+    border-color: #b5bc48;
+  }
+  .signal-insight {
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid #aeb5a0;
+    border-radius: 5px;
+    padding: 20px;
+    margin-block: 1rem;
+    box-shadow: 0 18px 60px rgb(32 37 31 / 0.18);
+  }
+  .insight-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+  }
+  .insight-heading .eyebrow {
+    font-size: 0.6rem;
+    color: var(--muted);
+  }
+  .insight-close {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: transparent;
+    font: 1.5rem/1 var(--font);
+  }
+  .insight-close:hover {
+    background: var(--signal);
+  }
+  .signal-insight h3 {
+    font-size: 1.65rem;
+    line-height: 1.15;
+    max-width: 19rem;
+  }
+  .insight-body {
+    margin-top: 1rem;
+    color: #515949;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .insight-signature {
+    margin-top: 1rem;
+    font: italic 1.25rem var(--serif);
+  }
+  .insight-hint {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.65rem;
+    color: #515949;
+  }
+  @supports selector(:popover-open) {
+    .signal-insight {
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      width: min(25rem, calc(100vw - 32px));
+      height: fit-content;
+      max-height: calc(100dvh - 32px);
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+  }
+  @supports (position-area: bottom) {
+    .signal-insight {
+      position-anchor: var(--insight-anchor);
+      position-area: bottom span-right;
+      position-try-fallbacks:
+        flip-block,
+        flip-inline,
+        flip-block flip-inline,
+        --insight-centered;
+      inset: auto;
+      margin: 8px;
+    }
+  }
+  @position-try --insight-centered {
+    position-area: none;
+    inset: 16px;
+    margin: auto;
+  }
+  @supports not selector(:popover-open) {
+    .signal-tag,
+    .insight-close,
+    .insight-hint {
+      display: none;
+    }
   }
   .signal-coordinate {
     position: absolute;
@@ -307,7 +480,7 @@ const rings = projectSignal(createSignalGeometry());
       grid-template-columns: 1fr 0.94fr;
     }
     .signal-tag {
-      font-size: 0.46rem;
+      font-size: 0.6rem;
     }
     .hero-actions {
       gap: 0.5rem 1rem;
@@ -355,7 +528,7 @@ const rings = projectSignal(createSignalGeometry());
       padding: 0;
     }
     .signal-tag {
-      font-size: 0.48rem;
+      font-size: 0.6rem;
     }
     figcaption {
       margin-inline: 0;

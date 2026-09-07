@@ -1,0 +1,75 @@
+---
+import {
+  homeDetails,
+  homeFaces,
+  homeOpenings,
+  homePath,
+  homeSensors,
+  projectHome,
+} from '../lib/isometric';
+
+const context = projectHome(homeSensors.context);
+const control = projectHome(homeSensors.control);
+const comfort = projectHome(homeSensors.comfort);
+---
+
+<svg class="house-drawing" viewBox="0 0 450 320" fill="none" aria-hidden="true">
+  <g stroke="#596047" stroke-width="1.15" stroke-linejoin="round">
+    <path d={homePath(homeFaces.groundFront)} fill="#cbd0b7"></path>
+    <path d={homePath(homeFaces.groundSide)} fill="#bbc3a5"></path>
+    <path d={homePath(homeFaces.ground)} fill="#dce1c6"></path>
+    <path d={homePath(homeFaces.entryPath)} fill="#f0f0db" stroke="none"></path>
+    <path d={homePath(homeFaces.sideWall)} fill="#c4cfaa"></path>
+    <path d={homePath(homeFaces.frontWall)} fill="#f0f1da"></path>
+    <path d={homePath(homeFaces.farRoof)} fill="#d1d8b9"></path>
+    <path d={homePath(homeFaces.nearRoof)} fill="#a9b594"></path>
+    <g stroke="#788567" stroke-width="0.7">
+      <path d={homePath(homeDetails.roofSeamOne, false)}></path>
+      <path d={homePath(homeDetails.roofSeamTwo, false)}></path>
+    </g>
+    <g fill="#758770">
+      <path d={homePath(homeOpenings.frontWindow)}></path>
+      <path d={homePath(homeOpenings.sideWindowBack)}></path>
+      <path d={homePath(homeOpenings.sideWindowFront)}></path>
+    </g>
+    <path d={homePath(homeDetails.windowMullion, false)} stroke="#e3e8ce"
+    ></path>
+    <path d={homePath(homeOpenings.door)} fill="#a5b48b"></path>
+    <path
+      d={homePath(homeDetails.doorHandle, false)}
+      stroke="#354c36"
+      stroke-width="2"></path>
+  </g>
+  <g stroke="#727a5e" stroke-width="0.85" stroke-dasharray="2.5 4">
+    <path d={`M${context.x} ${context.y} L100 110 H62`}></path>
+    <path d={`M${control.x} ${control.y} L354 115 H390`}></path>
+    <path d={`M${comfort.x} ${comfort.y} L330 250 H386`}></path>
+  </g>
+  <g fill="#e8ef61" stroke="#4c5a3d" stroke-width="1.2">
+    {
+      Object.values(homeSensors).map((point) => {
+        const { x, y } = projectHome(point);
+        return <circle cx={x} cy={y} r="3.5" />;
+      })
+    }
+  </g>
+  <g fill="#535d43" font-size="8" font-family="monospace" letter-spacing="1.2">
+    <text x="62" y="99">CONTEXT</text>
+    <text x="344" y="104">CONTROL</text>
+    <text x="338" y="269">COMFORT</text>
+  </g>
+</svg>
+
+<style>
+  .house-drawing {
+    display: block;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.4s var(--ease);
+  }
+  @media (prefers-reduced-motion: no-preference) {
+    :global(.home-art:hover) .house-drawing {
+      transform: translateY(-4px);
+    }
+  }
+</style>

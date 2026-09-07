@@ -23,8 +23,13 @@ import Arrow from './Arrow.astro';
         working day better.
       </p><p>
         Today, I’m an AI Ops Specialist at Polymarket. Previously, I helped
-        build Craft Agents at Craft Docs. Through consulting and teaching, I
-        bring that practical perspective to other teams.
+        build <a
+          href="https://thecraftagents.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          >Craft Agents<span class="sr-only"> (opens in a new tab)</span></a
+        > at Craft Docs. Through consulting and teaching, I bring that practical perspective
+        to other teams.
       </p><p>
         I care about who owns the workflow, how it fails, and whether the people
         using it can make it their own.
@@ -42,14 +47,43 @@ import Arrow from './Arrow.astro';
           </dd>
         </div><div>
           <dt>PREVIOUSLY</dt><dd>
-            <strong>Craft Docs</strong><span
-              >Building Craft Agents with the team</span
+            <strong>Craft Docs</strong><span class="experience-project">
+              <img
+                src="/brands/craft-agents.svg"
+                width="24"
+                height="24"
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+              <span>Building Craft Agents with the team</span>
+            </span>
+            <a
+              href="https://thecraftagents.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit the Craft Agents website (opens in a new tab)"
+              ><Arrow /></a
             >
           </dd>
         </div><div>
           <dt>FOUNDATIONS</dt><dd>
-            <strong>Bosch · Yabune</strong><span
-              >Cloud, DevOps & real-world automation</span
+            <strong class="foundation-brands"
+              ><span>Bosch ·</span><img
+                src="/brands/yabune-solutions.png"
+                width="2941"
+                height="805"
+                alt="Yabune Solutions"
+                loading="lazy"
+                decoding="async"
+              /></strong
+            ><span>Cloud, DevOps & real-world automation</span>
+            <a
+              href="https://yabune-home.hu/en/"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Visit the Yabune website (opens in a new tab)"
+              ><Arrow /></a
             >
           </dd>
         </div>
@@ -146,8 +180,33 @@ import Arrow from './Arrow.astro';
     margin-top: 1rem;
     max-width: 32rem;
   }
+  .about-content > p a {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
   .experience {
     margin: 2rem 0 1rem;
+  }
+  .experience-project {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .experience-project img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+  }
+  .foundation-brands {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .foundation-brands img {
+    width: 96px;
+    height: auto;
+    object-fit: contain;
   }
   .experience > div {
     display: flex;

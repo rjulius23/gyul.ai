@@ -14,7 +14,7 @@ Reviewed 7 September 2026. This document records publishable sources and editori
 
 The original committed site supplies the existing project, course, speaker, and profile destinations. Public checks on the review date found:
 
-- [Craft Agents — original repository link](https://github.com/lukilabs/craft-agents-oss): redirects to the public [craft-ai-agents repository](https://github.com/craft-ai-agents/craft-agents-oss). Keep the original valid link or use the verified canonical destination; describe the project without popularity metrics or sole-builder claims.
+- [Craft Agents — official website](https://thecraftagents.com): primary product destination, as requested by the owner. Retain the canonical [open-source repository](https://github.com/craft-ai-agents/craft-agents-oss) as a separate secondary link; describe team participation without popularity metrics or sole-builder claims. Use the official product mark, not a decorative substitute.
 - [Yabune Home](https://yabune-home.hu/en/): public smart-home and automation website. Retain the project link; do not import its customer logos, testimonials, prices, or service promises into this personal site.
 - [Robot Dreams course](https://robotdreams.hu/course/215-okosotthon-tervezes): names Halmos Gyula among the instructors and covers home-system design and installation. Avoid duplicating enrollment dates, availability, or commercial details that can change.
 - [Brain Bar speaker profile](https://brainbar.com/en/person/gyula-halmos): supports speaking about generative models and 5G. Treat as a historical appearance, not an upcoming booking.
@@ -23,6 +23,12 @@ The original committed site supplies the existing project, course, speaker, and 
 - [DevBP event](https://luma.com/myxm4b4o): owner-supplied public listing; fetched content identifies DevBP, but provides insufficient detail to independently confirm a talk title or date. Link to the listing without inventing those details.
 
 Link availability does not independently verify every claim on the destination. Recheck destinations before launch and during content updates; keep uncertainty explicit rather than filling gaps.
+
+## Owner's operating model
+
+The AI-native-team section and hero disclosures are generalized, author-requested statements of approach. Keep them distinct from client case studies and independently measured results. Do not publish source correspondence, recipients, private company anecdotes, staffing/budget assumptions, or proposal-specific numerical targets.
+
+Preserve the central distinctions: a delivery system rather than a tool purchase; small teams with end-to-end ownership; shared context and reusable skills; machine-enforced checks before human review; risk-based autonomy; measurement of delivery and rework rather than activity. “Impossible goals” are learning experiments, not performance quotas or permission to cut quality or demand overtime. Personal examples require owner approval before inclusion.
 
 ## Artwork and static behavior
 

@@ -47,11 +47,11 @@ export const services = [
     eyebrow: 'FIND FOCUS',
     title: 'Start with the right problem.',
     description:
-      'Not every workflow needs an agent. Find the opportunities worth pursuing, the constraints that matter, and a sensible first move.',
+      'Not every workflow needs an agent. Map the work, decision bottlenecks and ownership first—then design a team and a pilot that can prove useful change.',
     deliverables: [
       'Workflow discovery',
-      'AI adoption roadmap',
-      'Pilot definition',
+      'AI-native team design',
+      'Measured pilots',
     ],
   },
   {
@@ -73,7 +73,7 @@ export const services = [
     eyebrow: 'MAKE IT YOUR TEAM’S',
     title: 'Less slide deck. More doing.',
     description:
-      'Build capability that stays after the session. Practical workshops and guided hackathons, shaped around the work your team actually does.',
+      'Build capability that stays after the session. Use real work and ambitious challenges to change how the team delegates, verifies and learns—not just which tools it opens.',
     deliverables: [
       'Hands-on workshops',
       'Skills & context design',

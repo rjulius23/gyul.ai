@@ -1,5 +1,6 @@
 ---
 import Arrow from './Arrow.astro';
+import IsometricHome from './IsometricHome.astro';
 ---
 
 <section id="projects" class="work wrap" aria-labelledby="work-title">
@@ -14,10 +15,10 @@ import Arrow from './Arrow.astro';
     <article class="project project-craft">
       <a
         class="project-art craft-art"
-        href="https://github.com/craft-ai-agents/craft-agents-oss"
+        href="https://thecraftagents.com"
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Explore Craft Agents on GitHub (opens in a new tab)"
+        aria-label="Explore Craft Agents (opens in a new tab)"
       >
         <span class="art-eyebrow eyebrow"
           >OPEN SOURCE / A DIFFERENT WAY TO WORK</span
@@ -27,9 +28,13 @@ import Arrow from './Arrow.astro';
             class="craft-window window-mid"
           >
           </div><div class="craft-window window-front">
-            <div class="window-line"><i></i><i></i><i></i></div><span
-              class="craft-symbol">✳</span
-            ><span class="craft-type">Craft<br />Agents<span>.</span></span
+            <div class="window-line"><i></i><i></i><i></i></div><img
+              class="craft-symbol"
+              src="/brands/craft-agents.svg"
+              width="48"
+              height="48"
+              alt=""
+            /><span class="craft-type">Craft<br />Agents<span>.</span></span
             ><span class="window-footer">CONTEXT + TOOLS + YOU</span>
           </div><span class="craft-orbit orbit-one"></span><span
             class="craft-orbit orbit-two"></span>
@@ -39,6 +44,15 @@ import Arrow from './Arrow.astro';
         >
       </a>
       <div class="project-info">
+        <div class="project-brand craft-brand">
+          <img
+            src="/brands/craft-agents.svg"
+            width="28"
+            height="28"
+            alt=""
+            loading="lazy"
+          /><span>Craft Agents</span>
+        </div>
         <div class="project-meta">
           <span class="eyebrow">AGENT ENGINEERING</span><span class="eyebrow"
             >AT CRAFT DOCS</span
@@ -46,15 +60,27 @@ import Arrow from './Arrow.astro';
         </div><h3>A better interface for working with AI.</h3><p>
           At Craft Docs, I helped build Craft Agents: an open-source desktop app
           bringing AI, tools, and documents into a connected workflow.
-        </p><a
-          class="text-link"
-          href="https://github.com/craft-ai-agents/craft-agents-oss"
-          target="_blank"
-          rel="noopener noreferrer"
-          >Explore Craft Agents <Arrow /><span class="sr-only">
-            (opens in a new tab)</span
-          ></a
-        >
+        </p>
+        <div class="project-links">
+          <a
+            class="text-link"
+            href="https://thecraftagents.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Explore Craft Agents <Arrow /><span class="sr-only">
+              (opens in a new tab)</span
+            ></a
+          >
+          <a
+            class="text-link source-link"
+            href="https://github.com/craft-ai-agents/craft-agents-oss"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Craft Agents source on GitHub <Arrow /><span class="sr-only">
+              (opens in a new tab)</span
+            ></a
+          >
+        </div>
       </div>
     </article>
     <article class="project project-yabune">
@@ -66,55 +92,22 @@ import Arrow from './Arrow.astro';
         aria-label="Explore Yabune Home (opens in a new tab)"
       >
         <span class="art-eyebrow eyebrow">REAL-WORLD AUTOMATION / YABUNE</span>
-        <svg
-          class="house-drawing"
-          viewBox="0 0 450 320"
-          fill="none"
-          aria-hidden="true"
-        >
-          <g stroke="#484d37" stroke-width="1.3"
-            ><path d="m70 175 151-91 154 89-153 91Z"></path><path
-              d="m70 175 1 35 151 88 153-87v-38M222 264v34M125 144l151 88M177 112l151 90M123 206l149-90M173 235l150-91"
-              opacity=".38"></path><path
-              d="m119 171 100-60 105 59v67l-101 59-104-60Z"
-              fill="#e8edb9"></path><path
-              d="m119 171 100-91 105 90-101 60Z"
-              fill="#f0f2cf"></path><path
-              d="m119 171 104 60 101-61M223 231v65M174 204v62M273 201v66"
-            ></path><path
-              d="m143 204 18 10v26l-18-11ZM248 229l26-15v29l-26 15Z"
-              fill="#ccdb8d"></path><path
-              d="m281 211 18-11v28l-18 10Z"
-              fill="#ccdb8d"></path></g
-          >
-          <g stroke="#484d37" stroke-width="1"
-            ><path
-              d="M74 98h46l28 27M329 102h-34l-13 19M371 264h-46l-31-28"
-              stroke-dasharray="3 4"></path><circle
-              cx="69"
-              cy="98"
-              r="5"
-              fill="#e8ef61"></circle><circle
-              cx="334"
-              cy="102"
-              r="5"
-              fill="#e8ef61"></circle><circle
-              cx="376"
-              cy="264"
-              r="5"
-              fill="#e8ef61"></circle></g
-          >
-          <g fill="#484d37" font-size="8" font-family="monospace"
-            ><text x="41" y="79">CONTEXT</text><text x="319" y="83"
-              >CONTROL</text
-            ><text x="336" y="287">COMFORT</text></g
-          >
-        </svg>
+        <div class="home-composition"><IsometricHome /></div>
         <span class="art-caption eyebrow">CONCEPT ILLUSTRATION</span><span
           class="art-arrow"><Arrow /></span
         >
       </a>
       <div class="project-info">
+        <div class="project-brand">
+          <img
+            class="yabune-wordmark"
+            src="/brands/yabune-solutions.png"
+            width="2941"
+            height="805"
+            alt=""
+            loading="lazy"
+          />
+        </div>
         <div class="project-meta">
           <span class="eyebrow">CONNECTED SYSTEMS</span><span class="eyebrow"
             >CO-FOUNDER</span
@@ -170,7 +163,10 @@ import Arrow from './Arrow.astro';
     gap: 2rem;
   }
   .project-art {
-    display: block;
+    display: grid;
+    grid-template-rows: auto minmax(255px, 1fr) auto;
+    gap: 1rem;
+    padding: 1.4rem 1.5rem 1.1rem;
     position: relative;
     min-height: 370px;
     overflow: hidden;
@@ -184,16 +180,11 @@ import Arrow from './Arrow.astro';
     background: #e7e8d5;
   }
   .art-eyebrow {
-    position: absolute;
-    top: 1.4rem;
-    left: 1.5rem;
     font-size: 0.5rem;
     z-index: 2;
   }
   .art-caption {
-    position: absolute;
-    bottom: 1.1rem;
-    left: 1.5rem;
+    padding-right: 3rem;
     font-size: 0.45rem;
     color: #535b48;
   }
@@ -213,8 +204,8 @@ import Arrow from './Arrow.astro';
     background: var(--signal);
   }
   .craft-composition {
-    position: absolute;
-    inset: 0;
+    position: relative;
+    margin-inline: -1.5rem;
     display: grid;
     place-items: center;
   }
@@ -237,7 +228,7 @@ import Arrow from './Arrow.astro';
   .window-front {
     background: #283124;
     color: #eaf0df;
-    padding: 1rem 1.5rem;
+    padding: 16px 24px;
     transform: translate(-12px, 8px) rotate(-7deg);
     transition: transform 0.4s var(--ease);
   }
@@ -247,7 +238,7 @@ import Arrow from './Arrow.astro';
   .window-line {
     display: flex;
     gap: 4px;
-    padding-bottom: 0.8rem;
+    padding-bottom: 13px;
     border-bottom: 1px solid #626c55;
   }
   .window-line i {
@@ -258,27 +249,29 @@ import Arrow from './Arrow.astro';
   }
   .craft-symbol {
     display: block;
-    font-size: 2.7rem;
-    line-height: 1;
-    margin-top: 1.2rem;
-    color: var(--signal);
+    width: 48px;
+    height: 48px;
+    margin-top: 18px;
+    padding: 4px;
+    border-radius: 9px;
+    background: #f2efdf;
   }
   .craft-type {
     display: block;
-    font-size: 2.8rem;
+    font-size: 44px;
     line-height: 0.96;
     letter-spacing: -0.065em;
-    margin-top: 0.65rem;
+    margin-top: 10px;
   }
   .craft-type > span {
     color: var(--signal);
   }
   .window-footer {
     display: block;
-    font: 0.42rem var(--mono);
+    font: 7px var(--mono);
     letter-spacing: 0.08em;
     color: #c4cfb6;
-    margin-top: 1.4rem;
+    margin-top: 18px;
   }
   .craft-orbit {
     position: absolute;
@@ -294,16 +287,41 @@ import Arrow from './Arrow.astro';
   .orbit-two {
     transform: rotate(-35deg);
   }
-  .house-drawing {
-    width: 96%;
-    height: 100%;
+  .home-composition {
+    position: relative;
+    margin-inline: -1.5rem;
+    min-height: 255px;
+  }
+  .home-composition :global(.house-drawing) {
     position: absolute;
     inset: 0;
-    margin: auto;
-    transition: transform 0.4s var(--ease);
   }
-  .home-art:hover .house-drawing {
-    transform: translateY(-5px);
+  .project-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    min-height: 44px;
+    margin-bottom: 1rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    letter-spacing: -0.035em;
+  }
+  .project-brand img {
+    flex-shrink: 0;
+  }
+  .yabune-wordmark {
+    width: 160px;
+    max-width: 100%;
+    height: auto;
+  }
+  .project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 1.2rem;
+    align-items: center;
+  }
+  .project-links .source-link {
+    color: var(--muted);
   }
   .project-info {
     padding-top: 1.4rem;
@@ -312,6 +330,7 @@ import Arrow from './Arrow.astro';
     display: flex;
     justify-content: space-between;
     gap: 0.75rem;
+    flex-wrap: wrap;
     color: var(--muted);
   }
   .project-meta .eyebrow {
@@ -331,6 +350,8 @@ import Arrow from './Arrow.astro';
   }
   .project-info .text-link {
     font-size: 0.77rem;
+    max-width: 100%;
+    overflow-wrap: anywhere;
   }
   .teaching-row {
     display: grid;
@@ -383,13 +404,16 @@ import Arrow from './Arrow.astro';
       height: 225px;
     }
     .craft-symbol {
-      font-size: 2rem;
+      width: 40px;
+      height: 40px;
+      margin-top: 12px;
     }
     .craft-type {
-      font-size: 2.4rem;
+      font-size: 38px;
     }
     .window-footer {
-      font-size: 0.37rem;
+      font-size: 6px;
+      margin-top: 16px;
     }
     .project-info h3 {
       font-size: 1.65rem;
@@ -411,6 +435,20 @@ import Arrow from './Arrow.astro';
     }
     .teaching-title {
       font-size: 1.1rem;
+    }
+  }
+  @media (max-width: 400px) {
+    .teaching-row {
+      grid-template-columns: minmax(0, 1fr) 20px;
+    }
+    .teaching-mark {
+      display: none;
+    }
+    .teaching-description {
+      grid-column: 1;
+    }
+    .teaching-row > svg {
+      grid-column: 2;
     }
   }
 </style>
