@@ -1,0 +1,173 @@
+---
+import { services } from '../lib/content';
+import Arrow from './Arrow.astro';
+import TeamModel from './TeamModel.astro';
+---
+
+<section id="services" class="services wrap" aria-labelledby="services-title">
+  <div class="services-heading">
+    <p class="eyebrow section-label">01 / A PRACTICAL APPROACH</p>
+    <div class="heading-row">
+      <h2 id="services-title">
+        Less “what if”.<br />More <em>what’s next.</em>
+      </h2><p>
+        Good AI work starts with your work.<br />Here’s where I can help.
+      </p>
+    </div>
+  </div>
+  <div class="service-list">
+    {
+      services.map((service) => (
+        <article class="service-row">
+          <div class="service-id">
+            <>
+              <span class="service-number">{service.number}</span>
+              <span class="eyebrow">{service.eyebrow}</span>
+            </>
+          </div>
+          <div class="service-body">
+            <>
+              <h3>{service.title}</h3>
+              <p>{service.description}</p>
+              <ul class="deliverables" aria-label="Example deliverables">
+                {service.deliverables.map((item) => (
+                  <li>{item}</li>
+                ))}
+              </ul>
+            </>
+          </div>
+          <a
+            class="service-action"
+            href="#contact"
+            data-interest={service.id}
+            aria-label={`Discuss: ${service.title}`}
+          >
+            <Arrow />
+          </a>
+        </article>
+      ))
+    }
+  </div>
+  <TeamModel />
+</section>
+<style>
+  .services {
+    padding-block: clamp(4.5rem, 8vw, 8rem);
+  }
+  .heading-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 2rem;
+    align-items: flex-end;
+    margin-top: 2rem;
+    margin-bottom: 3.2rem;
+  }
+  .heading-row > p {
+    color: var(--muted);
+    font-size: 0.94rem;
+    line-height: 1.75;
+    padding-bottom: 0.4rem;
+    max-width: 100%;
+  }
+  .service-row {
+    display: grid;
+    grid-template-columns: 0.7fr 1.7fr 3rem;
+    gap: 2rem;
+    padding: 2.4rem 0;
+    border-top: 1px solid var(--line);
+    align-items: start;
+  }
+  .service-row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  .service-id {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    padding-top: 0.3rem;
+  }
+  .service-id .eyebrow {
+    font-size: 0.58rem;
+    color: var(--muted);
+    max-width: 8rem;
+  }
+  .service-number {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 2rem;
+    line-height: 1;
+  }
+  .service-body h3 {
+    font-size: clamp(1.4rem, 2.35vw, 2rem);
+  }
+  .service-body > p {
+    max-width: 38rem;
+    font-size: 0.87rem;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-top: 1rem;
+  }
+  .deliverables {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
+    margin-top: 1.2rem;
+  }
+  .deliverables li {
+    font-size: 0.62rem;
+    font-family: var(--mono);
+    position: relative;
+    padding-left: 0.8rem;
+  }
+  .deliverables li::before {
+    content: '+';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+  }
+  .service-action {
+    width: 44px;
+    height: 44px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    transition: background 0.2s ease;
+  }
+  .service-action:hover {
+    background: var(--signal);
+    border-color: var(--ink);
+  }
+  @media (max-width: 680px) {
+    .heading-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .service-row {
+      grid-template-columns: 1fr 44px;
+      gap: 1rem;
+      padding: 2rem 0;
+    }
+    .service-id {
+      grid-column: 1;
+    }
+    .service-id .eyebrow {
+      max-width: unset;
+    }
+    .service-body {
+      grid-row: 2;
+      grid-column: 1 / -1;
+    }
+    .service-action {
+      grid-row: 1;
+      grid-column: 2;
+    }
+    .service-body h3 {
+      font-size: 1.6rem;
+    }
+  }
+</style>

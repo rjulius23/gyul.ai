@@ -1,0 +1,113 @@
+name: Deploy GitHub Pages (manual)
+
+# Preparing this workflow does not authorize publishing. Obtain owner approval
+# for the selected commit and any Pages settings changes before dispatching it.
+on:
+  workflow_dispatch:
+    inputs:
+      confirm_deployment:
+        description: 'I have owner approval to publish this selected ref to https://gyul.ai'
+        required: true
+        type: boolean
+        default: false
+
+permissions: {}
+
+concurrency:
+  group: github-pages-production
+  cancel-in-progress: false
+
+env:
+  CI: 'true'
+  ASTRO_TELEMETRY_DISABLED: '1'
+
+jobs:
+  build:
+    name: Verify and package approved release
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.confirm_deployment == true }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: read
+    steps:
+      - name: Check out the selected commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ github.sha }}
+          persist-credentials: false
+
+      - name: Record release commit
+        run: git rev-parse HEAD
+
+      - name: Set up Node
+        uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+          cache-dependency-path: package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Check formatting, types, unit tests, and production build
+        run: npm run verify
+
+      - name: Install browser engines and system dependencies
+        run: npx --no-install playwright install --with-deps chromium webkit
+
+      - name: Run all six browser projects
+        run: npm run test:e2e
+
+      - name: Retain failure diagnostics
+        if: ${{ failure() }}
+        uses: actions/upload-artifact@bbbca2ddaa5d8feaa63e36b76fdaad77386f024f # v7.0.0; verified official Pages dependency
+        with:
+          name: release-failure-${{ github.run_id }}-${{ github.run_attempt }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 7
+          if-no-files-found: ignore
+
+      - name: Validate the browser-tested build
+        run: node scripts/check-build.mjs
+
+      - name: Upload only the static site
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: dist
+          retention-days: 1
+
+  deploy:
+    name: Publish approved Pages artifact
+    needs: build
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.confirm_deployment == true }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      # This job deliberately does not check out or execute repository code.
+      - name: Read existing Pages configuration
+        id: pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+        with:
+          enablement: false
+
+      - name: Require the configured root domain
+        env:
+          PAGES_ORIGIN: ${{ steps.pages.outputs.origin }}
+          PAGES_BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          if [ "$PAGES_ORIGIN" != 'https://gyul.ai' ] || [ -n "$PAGES_BASE_PATH" ]; then
+            echo '::error::Pages must already be configured for https://gyul.ai at the domain root. Obtain approval before changing settings.'
+            exit 1
+          fi
+
+      - name: Deploy verified artifact
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1

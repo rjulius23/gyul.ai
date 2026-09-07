@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Arrow from '../components/Arrow.astro';
+---
+
+<Layout title="Page not found — gyul.ai" noindex>
+  <main class="not-found wrap">
+    <p class="eyebrow">404 / A LOOSE THREAD</p><h1>
+      This one doesn’t<br /><em>connect.</em>
+    </h1><p>
+      The page you’re looking for isn’t here. Let’s get back to something
+      useful.
+    </p><a class="button" href="/"
+      >Back to gyul.ai <Arrow direction="right" /></a
+    >
+  </main>
+</Layout>
+<style>
+  .not-found {
+    padding-block: 15vh;
+  }
+  h1 {
+    font-size: clamp(3rem, 8vw, 7rem);
+    letter-spacing: -0.06em;
+    margin-block: 2rem;
+  }
+  main > p:not(.eyebrow) {
+    color: var(--muted);
+    margin-bottom: 2rem;
+    max-width: 30rem;
+  }
+</style>

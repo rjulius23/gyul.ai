@@ -1,0 +1,161 @@
+---
+import { teamPrinciples } from '../lib/perspectives';
+---
+
+<section
+  id="ai-native-teams"
+  class="team-model"
+  aria-labelledby="team-model-title"
+>
+  <div class="model-intro">
+    <p class="eyebrow">MY VIEW / AI-NATIVE TEAMS</p>
+    <h3 id="team-model-title">
+      AI-native is an<br /><em>operating model.</em>
+    </h3>
+    <p class="model-lead">
+      Start with the business goals, go-to-market strategy and product vision.
+      Then design an AI-native way to deliver them—not a familiar process with
+      AI added at the end.
+    </p>
+    <p class="model-measure">
+      <span class="eyebrow">MEASURE WHAT CHANGES</span>Lead time. Review
+      waiting. Rework.<br />Not prompts sent or lines generated.
+    </p>
+  </div>
+  <ol class="model-principles">
+    {
+      teamPrinciples.map((principle, index) => (
+        <li>
+          <span class="principle-number" aria-hidden="true">
+            0{index + 1}
+          </span>
+          <div>
+            <>
+              <h4>{principle.title}</h4>
+              <p>{principle.body}</p>
+            </>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+  <div class="model-challenge">
+    <div>
+      <span class="eyebrow">CHANGE THE METHOD. KEEP THE QUALITY BAR.</span><h4>
+        Set an <em>“impossible goal”.</em>
+      </h4>
+    </div>
+    <p>
+      A challenge the old way can’t meet makes room for a new one. Missing the
+      target is allowed; skipping checks or working longer isn’t the answer.
+      Keep what works as shared practice—not a performance quota.
+    </p>
+  </div>
+</section>
+<style>
+  .team-model {
+    margin-top: clamp(3rem, 5vw, 5rem);
+    padding: clamp(20px, 3vw, 44px);
+    background: #eceee2;
+    border: 1px solid #ced3be;
+    border-radius: 5px;
+    display: grid;
+    grid-template-columns: 0.95fr 1.1fr;
+    gap: 2.5rem 3rem;
+  }
+  .model-intro > .eyebrow {
+    font-size: 0.6rem;
+    color: #5a634e;
+  }
+  .model-intro h3 {
+    font-size: clamp(2rem, 3.4vw, 3.35rem);
+    line-height: 1.05;
+    margin-top: 1.25rem;
+  }
+  .model-lead {
+    max-width: 25rem;
+    margin-top: 1.4rem;
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #515949;
+  }
+  .model-measure {
+    margin-top: 2rem;
+    font-size: 0.8rem;
+    line-height: 1.7;
+    border-left: 3px solid #b1bd63;
+    padding-left: 1rem;
+  }
+  .model-measure .eyebrow {
+    font-size: 0.53rem;
+    margin-bottom: 0.55rem;
+    color: #5a634e;
+  }
+  .model-principles {
+    list-style: none;
+    display: grid;
+    gap: 1.45rem;
+  }
+  .model-principles li {
+    display: grid;
+    grid-template-columns: 1.5rem minmax(0, 1fr);
+    gap: 0.8rem;
+  }
+  .principle-number {
+    font: 0.6rem/1.5 var(--mono);
+    color: #5a634e;
+    padding-top: 0.12rem;
+  }
+  .model-principles h4 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 500;
+    line-height: 1.25;
+    letter-spacing: -0.025em;
+  }
+  .model-principles p {
+    margin-top: 0.5rem;
+    font-size: 0.78rem;
+    color: #515949;
+    line-height: 1.75;
+  }
+  .model-challenge {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 0.95fr 1.1fr;
+    gap: 1.5rem 3rem;
+    border-top: 1px solid #c3cbb1;
+    padding-top: 1.6rem;
+  }
+  .model-challenge .eyebrow {
+    font-size: 0.52rem;
+    color: #5a634e;
+  }
+  .model-challenge h4 {
+    margin: 0.6rem 0 0;
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+  .model-challenge p {
+    font-size: 0.8rem;
+    color: #515949;
+    line-height: 1.75;
+  }
+  @media (max-width: 850px) {
+    .team-model,
+    .model-challenge {
+      grid-template-columns: 1fr;
+    }
+    .model-intro h3 {
+      font-size: clamp(2rem, 5vw, 3rem);
+    }
+    .model-lead {
+      max-width: 38rem;
+    }
+    .model-measure {
+      margin-top: 1.3rem;
+    }
+  }
+</style>

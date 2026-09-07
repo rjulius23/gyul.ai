@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Services from '../components/Services.astro';
+import Playground from '../components/Playground.astro';
+import Work from '../components/Work.astro';
+import About from '../components/About.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout>
+  <div id="top"></div>
+  <Header />
+  <main id="main" tabindex="-1">
+    <Hero /><Services /><Playground /><Work /><About /><Contact />
+  </main>
+  <Footer />
+  <script>
+    import '../scripts/site';
+  </script>
+</Layout>

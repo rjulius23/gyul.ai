@@ -1,0 +1,547 @@
+---
+import Arrow from './Arrow.astro';
+import { perspectives } from '../lib/perspectives';
+import {
+  createSignalGeometry,
+  projectSignal,
+  ringStyle,
+  ringPath,
+} from '../lib/signal';
+// Explicit tabindex=0 preserves pointer focus and native popover focus return in Safari.
+const rings = projectSignal(createSignalGeometry());
+---
+
+<section class="hero wrap" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="eyebrow hero-eyebrow">
+      <span class="eyebrow-mark" aria-hidden="true"></span> INDEPENDENT THINKING.
+      PRACTICAL AI.
+    </p>
+    <h1 id="hero-title">Put AI<br />to <em>work.</em></h1>
+    <p class="hero-intro">Useful systems.<br />Capable teams. Less theatre.</p>
+    <p class="hero-description">
+      I’m Gyula Halmos. I help teams turn AI possibilities into real
+      workflows—with strategy, agent engineering, and hands-on workshops.
+    </p>
+    <div class="hero-actions">
+      <a href="#contact" class="button">Discuss your project <Arrow /></a>
+      <a href="#playground" class="text-link"
+        >Try the playground <Arrow direction="down" /></a
+      >
+    </div>
+  </div>
+  <figure class="signal-figure" aria-labelledby="signal-caption" data-signal>
+    <div class="signal-heading eyebrow">
+      <span>FIG. 01 — CONNECTED INTELLIGENCE</span><span aria-hidden="true"
+        >↗</span
+      >
+    </div>
+    <div class="signal-stage">
+      <div class="signal-guide" aria-hidden="true"></div>
+      <div class="signal-guide signal-guide--inner" aria-hidden="true"></div>
+      <svg
+        class="signal-static"
+        data-signal-static
+        aria-hidden="true"
+        viewBox="0 0 600 530"
+        width="600"
+        height="530"
+        fill="none"
+      >
+        <ellipse
+          cx="307"
+          cy="467"
+          rx="138"
+          ry="12"
+          fill="#20251f"
+          opacity=".045"></ellipse>
+        {
+          rings.map((ring) => (
+            <path
+              d={ringPath(ring)}
+              fill={ringStyle(ring).fill}
+              stroke={ringStyle(ring).stroke}
+              stroke-width=".72"
+            />
+          ))
+        }
+      </svg>
+      <canvas
+        data-signal-canvas
+        aria-hidden="true"
+        class="signal-canvas"
+        width="600"
+        height="530"
+        hidden></canvas>
+      {
+        perspectives.map((perspective) => (
+          <button
+            type="button"
+            tabindex="0"
+            class={`signal-tag ${perspective.position}`}
+            popovertarget={`insight-${perspective.id}`}
+            style={`--insight-anchor: --insight-${perspective.id}`}
+            data-insight-trigger={perspective.id}
+          >
+            <span class="tag-cross" aria-hidden="true">
+              +
+            </span>
+            <span>
+              {perspective.number} / {perspective.label}
+            </span>
+            <span class="sr-only"> — my approach</span>
+          </button>
+        ))
+      }
+      <span class="signal-coordinate eyebrow" aria-hidden="true"
+        >IDEAS → SYSTEMS</span
+      >
+    </div>
+    {
+      perspectives.map((perspective) => (
+        <div
+          id={`insight-${perspective.id}`}
+          popover="auto"
+          role="dialog"
+          aria-labelledby={`insight-${perspective.id}-title`}
+          class="signal-insight"
+          style={`--insight-anchor: --insight-${perspective.id}`}
+          data-signal-insight
+        >
+          <div class="insight-heading">
+            <p class="eyebrow">
+              {perspective.number} / {perspective.label}
+            </p>
+            <button
+              type="button"
+              tabindex="0"
+              class="insight-close"
+              popovertarget={`insight-${perspective.id}`}
+              popovertargetaction="hide"
+              aria-label={`Close ${perspective.label.toLowerCase()} insight`}
+              autofocus
+            >
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+          <h3 id={`insight-${perspective.id}-title`}>{perspective.title}</h3>
+          <p class="insight-body">{perspective.body}</p>
+          <p class="insight-signature">— Gyula</p>
+        </div>
+      ))
+    }
+    <figcaption id="signal-caption">
+      <span
+        >Different threads. One useful system.<span class="insight-hint"
+          >Explore the + markers for my take.</span
+        ></span
+      >
+      <button type="button" class="motion-control" data-art-pause hidden
+        ><span aria-hidden="true" data-motion-icon>Ⅱ</span>
+        <span data-motion-label>Pause motion</span></button
+      >
+      <span class="motion-note" data-motion-note hidden>Motion reduced</span>
+    </figcaption>
+  </figure>
+  <div class="hero-bottom">
+    <span class="eyebrow">BUILT AROUND THE WORK. NOT THE HYPE.</span>
+    <a href="#services" class="scroll-cue"
+      ><span class="eyebrow">CONNECT THE DOTS</span><Arrow
+        direction="down"
+      /></a
+    >
+  </div>
+</section>
+<style>
+  .hero {
+    padding-top: clamp(3rem, 5.4vw, 5.5rem);
+    display: grid;
+    grid-template-columns: 1.08fr 1fr;
+    column-gap: 1rem;
+    align-items: center;
+  }
+  .hero-copy {
+    position: relative;
+    z-index: 1;
+  }
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    margin-bottom: 2rem;
+    font-size: 0.62rem;
+  }
+  .eyebrow-mark {
+    width: 0.4rem;
+    height: 0.4rem;
+    border: 1px solid currentColor;
+    transform: rotate(45deg);
+  }
+  h1 {
+    font-size: clamp(5.25rem, 9.1vw, 8.65rem);
+    letter-spacing: -0.077em;
+    line-height: 0.89;
+    font-weight: 500;
+  }
+  h1 em {
+    font-size: 1.15em;
+    letter-spacing: -0.04em;
+  }
+  .hero-intro {
+    margin-top: 2.2rem;
+    font-size: clamp(1.25rem, 1.75vw, 1.65rem);
+    letter-spacing: -0.035em;
+    line-height: 1.4;
+  }
+  .hero-description {
+    margin-top: 1rem;
+    max-width: 26rem;
+    font-size: 0.94rem;
+    color: var(--muted);
+    line-height: 1.75;
+  }
+  .hero-actions {
+    margin-top: 1.8rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.65rem 1.5rem;
+  }
+  .signal-figure {
+    align-self: stretch;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+    position: relative;
+    padding-top: 0.25rem;
+  }
+  .signal-heading {
+    display: flex;
+    justify-content: space-between;
+    color: var(--muted);
+    font-size: 0.55rem;
+    padding: 0 1rem;
+  }
+  .signal-stage {
+    position: relative;
+    aspect-ratio: 600 / 530;
+    margin-top: 0.3rem;
+  }
+  .signal-static,
+  .signal-canvas {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    inset: 0;
+  }
+  .signal-guide {
+    position: absolute;
+    width: 84%;
+    aspect-ratio: 1;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    left: 9%;
+    top: 7%;
+    opacity: 0.6;
+  }
+  .signal-guide--inner {
+    width: 67%;
+    left: 17.5%;
+    top: 16.5%;
+    border-style: dashed;
+    opacity: 0.6;
+  }
+  .signal-tag {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    position: absolute;
+    z-index: 1;
+    font: 0.6rem var(--mono);
+    letter-spacing: 0.035em;
+    background: rgb(245 243 236 / 0.97);
+    color: var(--ink);
+    padding: 0.35rem 0.6rem 0.35rem 0.25rem;
+    min-height: 44px;
+    max-width: 100%;
+    text-align: left;
+    text-transform: uppercase;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    anchor-name: var(--insight-anchor);
+    transition:
+      border-color 0.2s ease,
+      background 0.2s ease;
+  }
+  .signal-tag:hover {
+    border-color: #aeb5a0;
+    background: var(--paper);
+  }
+  .tag-cross {
+    display: grid;
+    place-items: center;
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    font-size: 1.1rem;
+    line-height: 1;
+  }
+  .signal-tag:hover .tag-cross {
+    background: var(--signal);
+    border-color: var(--ink);
+  }
+  .tag-context {
+    top: 17%;
+    left: 0;
+  }
+  .tag-context::after {
+    content: '';
+    width: 1.5rem;
+    height: 1px;
+    background: var(--ink);
+    position: absolute;
+    left: 100%;
+  }
+  .tag-tools {
+    top: 41%;
+    right: 0;
+  }
+  .tag-human {
+    bottom: 10%;
+    left: 18%;
+    max-width: 82%;
+  }
+  .tag-human .tag-cross {
+    background: var(--signal);
+    border-color: #b5bc48;
+  }
+  .signal-insight {
+    color: var(--ink);
+    background: var(--paper);
+    border: 1px solid #aeb5a0;
+    border-radius: 5px;
+    padding: 20px;
+    margin-block: 1rem;
+    box-shadow: 0 18px 60px rgb(32 37 31 / 0.18);
+  }
+  .insight-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 0.85rem;
+  }
+  .insight-heading .eyebrow {
+    font-size: 0.6rem;
+    color: var(--muted);
+  }
+  .insight-close {
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    background: transparent;
+    font: 1.5rem/1 var(--font);
+  }
+  .insight-close:hover {
+    background: var(--signal);
+  }
+  .signal-insight h3 {
+    font-size: 1.65rem;
+    line-height: 1.15;
+    max-width: 19rem;
+  }
+  .insight-body {
+    margin-top: 1rem;
+    color: #515949;
+    font-size: 0.9rem;
+    line-height: 1.7;
+  }
+  .insight-signature {
+    margin-top: 1rem;
+    font: italic 1.25rem var(--serif);
+  }
+  .insight-hint {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.65rem;
+    color: #515949;
+  }
+  @supports selector(:popover-open) {
+    .signal-insight {
+      position: fixed;
+      inset: 0;
+      margin: auto;
+      width: min(25rem, calc(100vw - 32px));
+      height: fit-content;
+      max-height: calc(100dvh - 32px);
+      overflow: auto;
+      overscroll-behavior: contain;
+    }
+  }
+  @supports (position-area: bottom) {
+    .signal-insight {
+      position-anchor: var(--insight-anchor);
+      position-area: bottom span-right;
+      position-try-fallbacks:
+        flip-block,
+        flip-inline,
+        flip-block flip-inline,
+        --insight-centered;
+      inset: auto;
+      margin: 8px;
+    }
+  }
+  @position-try --insight-centered {
+    position-area: none;
+    inset: 16px;
+    margin: auto;
+  }
+  @supports not selector(:popover-open) {
+    .signal-tag,
+    .insight-close,
+    .insight-hint {
+      display: none;
+    }
+  }
+  .signal-coordinate {
+    position: absolute;
+    bottom: 5%;
+    right: 1%;
+    font-size: 0.5rem;
+    color: var(--muted);
+    writing-mode: vertical-rl;
+  }
+  figcaption {
+    margin: 0.8rem 1rem 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+    color: var(--muted);
+    font-size: 0.68rem;
+    min-height: 3.5rem;
+  }
+  .motion-control {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    background: transparent;
+    padding: 0.5rem 0.25rem;
+    font: 0.58rem var(--mono);
+    min-height: 36px;
+    white-space: nowrap;
+    color: var(--ink);
+  }
+  .motion-control:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+  .motion-note {
+    font: 0.58rem var(--mono);
+  }
+  .hero-bottom {
+    grid-column: 1 / -1;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1.5rem;
+    align-items: center;
+    margin-top: 3.5rem;
+    padding: 1.2rem 0;
+    border-bottom: 1px solid var(--line);
+    color: var(--muted);
+  }
+  .hero-bottom .eyebrow {
+    font-size: 0.56rem;
+  }
+  .scroll-cue {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 36px;
+  }
+  @media (min-width: 1550px) {
+    .hero {
+      padding-top: 6rem;
+    }
+  }
+  @media (max-width: 1000px) {
+    .hero {
+      grid-template-columns: 1fr 0.94fr;
+    }
+    .signal-tag {
+      font-size: 0.6rem;
+    }
+    .hero-actions {
+      gap: 0.5rem 1rem;
+    }
+    .hero-actions .button {
+      font-size: 0.77rem;
+    }
+    .hero-actions .text-link {
+      font-size: 0.77rem;
+    }
+    .signal-heading {
+      font-size: 0.48rem;
+    }
+  }
+  @media (max-width: 680px) {
+    .hero {
+      grid-template-columns: 1fr;
+      padding-top: 2.8rem;
+    }
+    h1 {
+      font-size: clamp(5.35rem, 19vw, 8.3rem);
+    }
+    .hero-eyebrow {
+      font-size: 0.54rem;
+      margin-bottom: 1.8rem;
+    }
+    .hero-intro {
+      margin-top: 1.8rem;
+      font-size: 1.45rem;
+    }
+    .hero-description {
+      font-size: 0.88rem;
+      max-width: 29rem;
+    }
+    .hero-actions {
+      margin-top: 1.4rem;
+    }
+    .signal-figure {
+      margin-top: 3.3rem;
+      width: min(100%, 31rem);
+      justify-self: center;
+    }
+    .signal-heading {
+      font-size: 0.51rem;
+      padding: 0;
+    }
+    .signal-tag {
+      font-size: 0.6rem;
+    }
+    figcaption {
+      margin-inline: 0;
+    }
+    .hero-bottom {
+      margin-top: 1.8rem;
+    }
+    .hero-bottom > .eyebrow {
+      max-width: 11rem;
+      line-height: 1.6;
+    }
+    .scroll-cue {
+      gap: 0.6rem;
+    }
+  }
+</style>
