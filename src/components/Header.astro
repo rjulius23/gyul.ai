@@ -1,0 +1,176 @@
+---
+import Arrow from './Arrow.astro';
+const links = [
+  { href: '#services', label: 'Approach' },
+  { href: '#playground', label: 'Playground' },
+  { href: '#projects', label: 'Selected work' },
+  { href: '#about', label: 'About' },
+];
+---
+
+<a class="skip-link" href="#main">Skip to content</a>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a href="#top" class="wordmark" aria-label="gyul.ai — back to top"
+      >gyul<span class="wordmark-point">.</span>ai<span
+        class="wordmark-plus"
+        aria-hidden="true">✳</span
+      ></a
+    >
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {links.map((link) => <a href={link.href}>{link.label}</a>)}
+    </nav>
+    <a class="header-contact" href="#contact">Let’s talk <Arrow /></a>
+    <details class="mobile-menu" data-mobile-menu>
+      <summary aria-controls="mobile-links"
+        >Menu <span aria-hidden="true">+</span></summary
+      >
+      <nav id="mobile-links" aria-label="Mobile navigation">
+        {
+          links.map((link) => (
+            <a href={link.href}>
+              {link.label}
+              <Arrow direction="right" />
+            </a>
+          ))
+        }
+        <a href="#contact">Let’s talk<Arrow /></a>
+      </nav>
+    </details>
+  </div>
+</header>
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgb(245 243 236 / 0.97);
+    border-bottom: 1px solid var(--line);
+  }
+  .header-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    min-height: 88px;
+    gap: 0.5rem 2rem;
+    padding-block: 0.5rem;
+  }
+  .wordmark {
+    display: flex;
+    align-items: baseline;
+    font-size: 1.9rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.09em;
+    margin-right: auto;
+  }
+  .wordmark-point {
+    color: var(--ink);
+  }
+  .wordmark-plus {
+    align-self: center;
+    margin-left: 0.8rem;
+    color: var(--ink);
+    background: var(--signal);
+    font-size: 1.5rem;
+    width: 1.75rem;
+    height: 1.75rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    line-height: 1;
+    letter-spacing: 0;
+  }
+  .desktop-nav {
+    display: flex;
+    gap: clamp(1.2rem, 2.5vw, 2.5rem);
+    align-items: center;
+  }
+  .desktop-nav a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
+    font-size: 0.8rem;
+  }
+  .desktop-nav a:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.4rem;
+  }
+  .header-contact {
+    display: inline-flex;
+    align-items: center;
+    gap: 1.5rem;
+    min-height: 42px;
+    padding: 0.6rem 1rem;
+    border: 1px solid var(--ink);
+    border-radius: 2px;
+    margin-left: 1rem;
+    font-size: 0.8rem;
+    transition: background 0.2s ease;
+  }
+  .header-contact:hover {
+    background: var(--signal);
+  }
+  .mobile-menu {
+    display: none;
+  }
+  @media (max-width: 800px) {
+    .header-inner {
+      min-height: 72px;
+      gap: 1rem;
+    }
+    .desktop-nav {
+      display: none;
+    }
+    .header-contact {
+      margin-left: 0;
+      gap: 0.75rem;
+    }
+    .mobile-menu {
+      display: block;
+      margin-left: auto;
+    }
+    summary {
+      list-style: none;
+      display: flex;
+      align-items: center;
+      gap: 0.9rem;
+      min-height: 44px;
+      font-size: 0.8rem;
+    }
+    summary::-webkit-details-marker {
+      display: none;
+    }
+    summary span {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+    .mobile-menu[open] summary span {
+      transform: rotate(45deg);
+    }
+    .mobile-menu nav {
+      position: absolute;
+      top: calc(100% + 1px);
+      inset-inline: 0;
+      background: var(--paper);
+      border-bottom: 1px solid var(--ink);
+      padding: 1rem var(--gutter) 1.5rem;
+      box-shadow: 0 15px 25px rgb(32 37 31 / 0.08);
+    }
+    .mobile-menu nav a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 0;
+      border-bottom: 1px solid var(--line);
+    }
+  }
+  @media (max-width: 420px) {
+    .header-contact {
+      display: none;
+    }
+    .wordmark {
+      font-size: 1.65rem;
+    }
+  }
+</style>

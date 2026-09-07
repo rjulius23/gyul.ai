@@ -1,0 +1,173 @@
+---
+import { profile } from '../lib/content';
+import Arrow from './Arrow.astro';
+---
+
+<footer class="footer wrap">
+  <div class="footer-top">
+    <a href="#top" class="footer-wordmark" aria-label="gyul.ai — back to top"
+      >gyul.ai</a
+    ><span class="footer-statement">Human intent.<br />Machine capability.</span
+    ><nav aria-label="Social links">
+      <a href={profile.linkedin} target="_blank" rel="noopener noreferrer"
+        >LinkedIn <Arrow /><span class="sr-only"> (opens in a new tab)</span></a
+      ><a href={profile.github} target="_blank" rel="noopener noreferrer"
+        >GitHub <Arrow /><span class="sr-only"> (opens in a new tab)</span></a
+      >
+    </nav>
+  </div>
+  <div class="footer-bottom">
+    <p class="copyright">
+      <img
+        src="/brand-mark.webp"
+        width="28"
+        height="28"
+        loading="lazy"
+        alt=""
+      />
+      <span>© 2026 HG AI Consulting · Gyula Halmos</span>
+    </p><details class="privacy">
+      <summary>Privacy, simply</summary><p>
+        No analytics, advertising cookies, or third-party font requests. The
+        playground uses authored, synthetic examples—not live AI. Your contact
+        draft stays in this page’s memory, with no server submission or browser
+        storage. Copying uses your clipboard; opening an email draft passes the
+        message to your email app. External links follow their own sites’
+        policies.
+      </p>
+    </details><a href="#top" class="top-link"
+      >Back to top <Arrow direction="up-right" /></a
+    >
+  </div>
+</footer>
+<style>
+  .footer {
+    padding-block: 2.8rem 1.5rem;
+  }
+  .footer-top {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    align-items: center;
+    padding-bottom: 2.5rem;
+  }
+  .footer-wordmark {
+    font-size: 3rem;
+    font-weight: 500;
+    letter-spacing: -0.09em;
+    line-height: 1;
+  }
+  .footer-statement {
+    font-size: 0.72rem;
+    line-height: 1.7;
+    color: var(--muted);
+    padding-left: 2rem;
+    border-left: 1px solid var(--line);
+  }
+  nav {
+    margin-left: auto;
+    display: flex;
+    gap: 1.8rem;
+  }
+  nav a {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.76rem;
+    min-height: 44px;
+  }
+  nav svg {
+    width: 14px;
+    height: 14px;
+  }
+  nav a:hover,
+  .top-link:hover {
+    text-decoration: underline;
+    text-underline-offset: 0.3rem;
+  }
+  .footer-bottom {
+    border-top: 1px solid var(--line);
+    padding-top: 1.3rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2rem;
+    font-size: 0.58rem;
+    color: var(--muted);
+  }
+  .copyright {
+    display: flex;
+    align-items: center;
+    gap: 0.65rem;
+    min-height: 44px;
+  }
+  .copyright img {
+    border-radius: 4px;
+  }
+  .privacy {
+    margin-left: auto;
+    max-width: 23rem;
+  }
+  .privacy summary {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    text-decoration: underline;
+    text-underline-offset: 0.25rem;
+  }
+  .privacy summary::after {
+    content: '+';
+  }
+  .privacy[open] summary::after {
+    content: '−';
+  }
+  .privacy p {
+    line-height: 1.8;
+    font-size: 0.67rem;
+    padding-bottom: 0.8rem;
+  }
+  .top-link {
+    display: flex;
+    gap: 0.6rem;
+    align-items: center;
+    min-height: 44px;
+    flex-shrink: 0;
+  }
+  .top-link svg {
+    width: 14px;
+    height: 14px;
+  }
+  @media (max-width: 680px) {
+    .footer-top {
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+    .footer-wordmark {
+      font-size: 2.5rem;
+    }
+    .footer-statement {
+      font-size: 0.67rem;
+      padding-left: 1.5rem;
+    }
+    nav {
+      width: 100%;
+      margin-left: 0;
+      gap: 1.5rem;
+    }
+    .footer-bottom {
+      flex-wrap: wrap;
+      gap: 0 1.5rem;
+    }
+    .copyright {
+      width: 100%;
+    }
+    .privacy {
+      margin-left: 0;
+      flex: 1;
+    }
+    .top-link {
+      margin-left: auto;
+    }
+  }
+</style>
