@@ -188,10 +188,24 @@ test('motion can pause and follows live reduced-motion preferences', async ({
   await expect(figure).toHaveAttribute('data-motion', 'running');
   await page.getByRole('button', { name: 'Pause motion', exact: true }).focus();
   await page.emulateMedia({ reducedMotion: 'reduce' });
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => matchMedia('(prefers-reduced-motion: reduce)').matches,
+      ),
+    )
+    .toBe(true);
   await expect(figure).toHaveAttribute('data-motion', 'reduced');
   await expect(page.locator('[data-motion-note]')).toBeFocused();
   await expect(page.locator('[data-signal-canvas]')).toBeHidden();
   await page.emulateMedia({ reducedMotion: 'no-preference' });
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () => matchMedia('(prefers-reduced-motion: reduce)').matches,
+      ),
+    )
+    .toBe(false);
   await expect(
     page.getByRole('button', { name: 'Pause motion', exact: true }),
   ).toBeFocused();

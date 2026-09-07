@@ -63,7 +63,12 @@ export function initSignal(): () => void {
   }
   function frame(time: number) {
     frameId = 0;
-    if (!canAnimate()) return;
+    if (!canAnimate()) {
+      // A media/visibility value can change before its event is delivered.
+      // Keep the control and focus state in sync when the render loop stops.
+      sync();
+      return;
+    }
     if (time - lastPaint >= 1000 / 30) {
       phase += 0.006;
       currentX += (pointerX - currentX) * 0.08;
