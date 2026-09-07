@@ -54,6 +54,9 @@ test('static content, local assets, accessibility, and layout', async ({
   await page.screenshot({
     path: info.outputPath('full-page.png'),
     fullPage: true,
+    // Keep 3× phone DPR from exceeding WebKit's full-page bitmap limit.
+    // Browser emulation stays unchanged; only the exported image is scaled.
+    scale: 'css',
   });
 });
 
