@@ -2,9 +2,22 @@ import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
 const insights = [
-  { id: 'context', title: 'Give agents the whole picture.' },
-  { id: 'capability', title: 'Build capability, not tool dependency.' },
-  { id: 'judgement', title: 'Delegate execution. Keep ownership.' },
+  {
+    id: 'context',
+    title: 'Business context before model choice.',
+    ownerPoint: 'business goals, go-to-market strategy and product vision',
+  },
+  {
+    id: 'capability',
+    title: 'AI-first thinking. Not an add-on.',
+    ownerPoint: 'approach problems AI-first',
+  },
+  {
+    id: 'judgement',
+    title: 'Human direction. Agent implementation.',
+    ownerPoint:
+      'people shape the experience and its details; agents write the code',
+  },
 ];
 
 test('hero insights support keyboard, dismissal, and focus return', async ({
@@ -21,6 +34,7 @@ test('hero insights support keyboard, dismissal, and focus return', async ({
     await trigger.focus();
     await page.keyboard.press(index === 1 ? 'Space' : 'Enter');
     await expect(dialog).toBeVisible();
+    await expect(dialog).toContainText(insight.ownerPoint);
     await expect(page.getByRole('dialog')).toHaveCount(1);
     const close = dialog.getByRole('button', { name: /^Close / });
     await expect(close).toBeFocused();

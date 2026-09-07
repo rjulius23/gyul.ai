@@ -26,7 +26,7 @@ Link availability does not independently verify every claim on the destination. 
 
 ## Owner's operating model
 
-The AI-native-team section and hero disclosures are generalized, author-requested statements of approach. Keep them distinct from client case studies and independently measured results. Do not publish source correspondence, recipients, private company anecdotes, staffing/budget assumptions, or proposal-specific numerical targets.
+The hero disclosures paraphrase the owner's direct answers from 7 September 2026: business goals, go-to-market strategy and product vision matter more than model choice; teams should approach problems AI-first; people own high-level strategy and design taste while agents implement the code. The UI example illustrates this boundary—it is not a claimed client result. The AI-native-team section combines these answers with the owner's generalized operating principles. Keep both distinct from client case studies and independently measured results. Do not publish source correspondence, recipients, private company anecdotes, staffing/budget assumptions, or proposal-specific numerical targets.
 
 Preserve the central distinctions: a delivery system rather than a tool purchase; small teams with end-to-end ownership; shared context and reusable skills; machine-enforced checks before human review; risk-based autonomy; measurement of delivery and rework rather than activity. “Impossible goals” are learning experiments, not performance quotas or permission to cut quality or demand overtime. Personal examples require owner approval before inclusion.
 

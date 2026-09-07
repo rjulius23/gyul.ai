@@ -1,46 +1,46 @@
-/** Public, generalized statements of approach. Keep personal examples owner-approved. */
+/** Hero insights paraphrase the owner's direct answers; team principles express their operating model. */
 export const perspectives = [
   {
     id: 'context',
     number: '01',
     label: 'Context',
     position: 'tag-context',
-    title: 'Give agents the whole picture.',
-    body: 'I start with a clear outcome, relevant working context and a testable definition of done. What we learn goes back into shared instructions and reusable skills—not another one-off prompt.',
+    title: 'Business context before model choice.',
+    body: 'Understanding the business goals, go-to-market strategy and product vision matters more to me than which model we use. That context tells us what is worth building—and what a good result actually means.',
   },
   {
     id: 'capability',
     number: '02',
     label: 'Capability',
     position: 'tag-tools',
-    title: 'Build capability, not tool dependency.',
-    body: 'AI-native is a team habit, not a software licence. I want small teams to own a result end to end, delegate well-defined work, and build checks that make the next task easier.',
+    title: 'AI-first thinking. Not an add-on.',
+    body: 'I want teams to approach problems AI-first. That means designing the work around what AI can do from the start, rather than adding a tool to an unchanged process. The goal is an AI-native way of working.',
   },
   {
     id: 'judgement',
     number: '03',
     label: 'Human judgement',
     position: 'tag-human',
-    title: 'Delegate execution. Keep ownership.',
-    body: 'I expect evidence, not “the agent says it works”. People own intent, architecture and risk. Autonomy grows with proven checks and explicit permissions—not with a more confident answer.',
+    title: 'Human direction. Agent implementation.',
+    body: 'High-level strategy and design taste stay with people. When building a UI, people shape the experience and its details; agents write the code. I step into technical decisions when they affect those higher-level goals.',
   },
 ] as const;
 
 export const teamPrinciples = [
   {
-    title: 'Small teams. End-to-end ownership.',
-    body: 'Capable generalists own the outcome, from a clear specification to delivery. Agents work on small, bounded slices; people resolve ambiguity and make decisions.',
+    title: 'AI-first. End-to-end ownership.',
+    body: 'Small teams own the outcome and consider AI from the start. Agents implement bounded slices; people set direction and judge whether the result serves the business.',
   },
   {
-    title: 'Context is part of the system.',
-    body: 'Shared instructions, reusable skills and a consistent toolchain improve every run. Feed lessons from reviews and failures back into that context.',
+    title: 'Business context, made reusable.',
+    body: 'Business goals, go-to-market strategy and product vision come before model choice. Carry that context into shared instructions and skills, and improve it as the team learns.',
   },
   {
-    title: 'Evidence before human review.',
-    body: 'Tests and automated checks run before a person reviews intent and risk. Mandatory rules live in permissions and CI—not just in a prompt.',
+    title: 'Human taste. Verified implementation.',
+    body: 'People shape product decisions and UI details; agents write the code. Automated checks handle routine verification, leaving human attention for choices that affect intent, quality or risk.',
   },
   {
     title: 'Autonomy is earned.',
-    body: 'Automate low-risk work inside clear boundaries. Increase scope as verification earns trust, and keep sensitive changes behind deliberate human approval.',
+    body: 'Expand autonomy as checks earn trust. Permissions and CI enforce the boundaries—not prompts. Human attention goes to strategic choices and technical details that change the intended outcome or risk.',
   },
 ] as const;
